@@ -1,7 +1,21 @@
 # tmux-ssh-mode
 
-tmux plugin to open new pane/window in ssh hosts where the host is selected according to the current host vim-like mode.
+Tmux plugin to open new window/pane already ssh'ed in a selected list.
 
-`set -w default-command 'ssh me@foo'
+## Installation
 
-create a script to change the current host and bind it to a key: `tmux bind-key x run-shell -b 'script.sh arg1 arg2'
+With [tpm][1], add the following to your `tmux.conf`:
+
+```tmux
+set -g @plugin 'cacharle/tmux-ssh-mode'
+```
+
+## Usage
+
+Set `@tmux_ssh_mode_hosts` to your list of hosts:
+
+```tmux
+set -g '@tmux_ssh_mode_hosts' 'cacharle@some-server,jean@wow'
+```
+
+[1]: https://github.com/tmux-plugins/tpm
