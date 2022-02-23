@@ -11,4 +11,10 @@ tmux set-option -g '@tmux_ssh_mode_hosts' "$(echo "$hosts" | tr '\n' ',')"
 # hosts="$(tmux show-option -gqv '@tmux_ssh_mode_hosts')"
 # echo "$hosts"
 
-tmux bind-key s run-shell -b "$SCRIPT_DIR/ssh-mode.sh"
+tmux bind-key S run-shell "$SCRIPT_DIR/next-mode.sh"
+
+old_status_line="$(tmux show-option -gqv 'status-right')"
+placeholder='\#{tmux-ssh-mode}'
+script="#($SCRIPT_DIR/current-mode.sh)"
+new_status_line=${old_status_line/$placeholder/$script}
+tmux set-option -g 'status-right' "$new_status_line"
